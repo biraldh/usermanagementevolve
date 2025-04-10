@@ -11,6 +11,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepo _userRepo;
   UserBloc(this._userRepo) : super(UserInitial()) {
     on<GetUsers>((event, emit) async {
+      emit(UserLoading());
       try{
         var response = await _userRepo.getUserList();
         emit(UserSuccess(userData: response));
