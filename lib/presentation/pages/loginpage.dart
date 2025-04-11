@@ -41,6 +41,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       }
+      else if(state is AuthLoading){
+        Center(child: CircularProgressIndicator(),);
+      }
       else if(state is AuthSuccess){
         Navigator.pushNamed(context, '/homePage');
       }

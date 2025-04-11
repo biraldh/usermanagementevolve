@@ -36,9 +36,10 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Form(
           key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Register', style: TextStyle(fontSize: 50),),
+              Center(child: const Text('Register', style: TextStyle(fontSize: 50),)),
               _authWidgets.authFields('Email', false, _emailController),
               _authWidgets.authFields('Password', true, _passwordController),
               _authWidgets.authButton(sW, sH,'register',() {
@@ -50,6 +51,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       LoginUser(authModel: userInfo));
                 }
               }),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Disclaimer', style: TextStyle(color: Colors.red, fontSize: 20),),
+                  Center(child: const Text('Registration of new users is not supported via the provided API. Only the pre-existing users available in the API can be used for authentication and testing purposes.',
+                  style: TextStyle(fontSize: 10),)),
+                ],
+              ),
+
             ],
           )
         ),

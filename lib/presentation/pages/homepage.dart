@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usermanagementevolve/presentation/bloc/userboc/user_bloc.dart';
 import 'package:usermanagementevolve/presentation/shared_widgets/homeWidgets.dart';
+import 'package:usermanagementevolve/presentation/shared_widgets/profileWidgets.dart';
 
 import '../../data/model/createmodel.dart';
 
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeWidgets _homeWidgets = HomeWidgets();
+  final ProfileWidgets _profileWidgets = ProfileWidgets();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _jobController = TextEditingController();
   String searchText = '';
@@ -70,11 +72,11 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          leading: IconButton(onPressed: () => Navigator.popAndPushNamed(context, '/loginPage'), icon: Icon(Icons.logout)),
           title: Text("User Management"),
           actions: [
             IconButton(
-              onPressed: () => _homeWidgets.createUserDialog(
+              onPressed: () => _profileWidgets.createUserDialog(
                 _nameController,
                 _jobController,
                 context,
