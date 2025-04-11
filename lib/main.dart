@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usermanagementevolve/presentation/bloc/authBloc/authbloc_bloc.dart';
+import 'package:usermanagementevolve/presentation/bloc/crudbloc/crud_bloc.dart';
+import 'package:usermanagementevolve/presentation/bloc/profliebloc/profile_bloc.dart';
 import 'package:usermanagementevolve/presentation/bloc/userboc/user_bloc.dart';
 import 'package:usermanagementevolve/presentation/pages/loginpage.dart';
 import 'package:usermanagementevolve/routes.dart';
@@ -24,6 +26,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<UserBloc>(
           create:(context) => UserBloc(UserRepo()),
+        ),
+        BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc(UserRepo())
+        ),
+        BlocProvider<CrudBloc>(
+            create: (context) => CrudBloc(UserRepo())
         ),
       ],
       child: MaterialApp(

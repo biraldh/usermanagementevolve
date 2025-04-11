@@ -16,3 +16,9 @@ class UserFailed extends UserState{
   final String errMessage;
   UserFailed({required this.errMessage});
 }
+class UserCreatedSuccess extends UserState{}
+
+class SingleUserGetSuccess extends UserState{
+  final UserModel user;
+  SingleUserGetSuccess({required this.user});
+}

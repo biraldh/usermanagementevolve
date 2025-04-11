@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:usermanagementevolve/presentation/pages/homepage.dart';
 import 'package:usermanagementevolve/presentation/pages/loginpage.dart';
+import 'package:usermanagementevolve/presentation/pages/profilePage.dart';
 import 'package:usermanagementevolve/presentation/pages/registerpage.dart';
 
 class RouteGen {
@@ -13,6 +14,14 @@ class RouteGen {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case '/homePage':
         return MaterialPageRoute(builder: (_) => HomePage());
+      case '/profilePage':
+        return MaterialPageRoute(
+          builder: (context) {
+            final args = settings.arguments as Map<String, dynamic>?;
+            final id = args?['id'] ?? '';
+            return ProfilePage(id: id);
+          },
+        );
       default:
         return _errorRoute();
     }

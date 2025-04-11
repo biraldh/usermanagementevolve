@@ -5,7 +5,7 @@ sealed class UserEvent {}
 
 class GetUsers extends UserEvent{}
 
-class SearchUser extends UserEvent{
-  final String name;
-  SearchUser({required this.name});
+class CreateUser extends UserEvent{
+  final CreateJobModel user;
+  CreateUser({required this.user});
 }

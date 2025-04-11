@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomeWidgets{
+class ProfileWidgets {
   final _formKey = GlobalKey<FormState>();
-  Widget cardList(driverInfo){
-    return Card(
-      elevation: 0,
-      color: Colors.blue[50],
-      child: ListTile(
-      title: Text('${driverInfo.firstName} ${driverInfo.lastName}'),
-      subtitle: Text(driverInfo.email),
-      trailing: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
-        child: Image.network(driverInfo.avatar)),
-      ),
-    );
-  }
-  Future<void> createUserDialog(nameControl,jobControl,context,VoidCallback event){
+  String emailRegex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+  Future<void> createUserDialog(nameControl, emailControl, context,
+      VoidCallback event) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -27,8 +16,8 @@ class HomeWidgets{
               key: _formKey,
               child: ListBody(
                 children: <Widget>[
-                  formTextFields(nameControl, 'name'),
-                  formTextFields(jobControl, 'email')
+                  customField('name',false, nameControl),
+                  customField('email',false,emailControl)
                 ],
               ),
             ),
@@ -48,18 +37,26 @@ class HomeWidgets{
       },
     );
   }
-  Widget formTextFields(controller, String hintText){
+
+  Widget customField(text, bool obscure, control) {
     return TextFormField(
-      validator: (value){
-        if(value == null || value.isEmpty){
+      controller: control,
+      obscureText: obscure,
+      decoration: InputDecoration(
+          hintText: text,
+      ),
+      validator: (value) {
+        final trimmedValue = value?.trim();
+        if (trimmedValue == null || trimmedValue.isEmpty) {
           return 'Fill the field';
+        }
+        if (text.toLowerCase() == 'email') {
+          if (!RegExp(emailRegex).hasMatch(trimmedValue)) {
+            return 'Enter a valid email';
+          }
         }
         return null;
       },
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-      ),
     );
   }
 }

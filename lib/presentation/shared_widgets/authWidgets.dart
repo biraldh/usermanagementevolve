@@ -12,11 +12,12 @@ class AuthWidgets{
           border: OutlineInputBorder()
       ),
       validator: (value){
-        if(value == null || value.isEmpty){
+        final trimmedValue = value?.trim();
+        if(trimmedValue == null || trimmedValue.isEmpty){
           return 'Fill the field';
         }
         if (text.toLowerCase() == 'email') {
-          if (!RegExp(emailRegex).hasMatch(value)) {
+          if (!RegExp(emailRegex).hasMatch(trimmedValue)) {
             return 'Enter a valid email';
           }
         }
