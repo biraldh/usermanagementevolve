@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ProfileWidgets {
   final _formKey = GlobalKey<FormState>();
   String emailRegex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-  Future<void> createUserDialog(nameControl, emailControl, context,
+  Future<void> createUserDialog(nameControl, emailControl, context, titleString,
       VoidCallback event) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Create user'),
+          title: Text(titleString),
           content: SingleChildScrollView(
             child: Form(
               key: _formKey,

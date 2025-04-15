@@ -135,6 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           _nameController,
                           _emailController,
                           context,
+                          'Edit user',
                               (){
                                 final fullName = _nameController.text.trim();
                                 final parts = fullName.split(' ');
