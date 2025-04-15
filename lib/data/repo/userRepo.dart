@@ -15,7 +15,6 @@ class UserRepo{
       return users.map((json) => UserModel.fromJson(json)).toList();
     }
     catch(e){
-      print(e.toString());
       throw Exception(e.toString());
     }
   }

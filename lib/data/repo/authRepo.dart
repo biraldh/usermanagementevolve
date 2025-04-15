@@ -18,12 +18,16 @@ class AuthRepo{
           throw Exception('invalid credentials');
         }
       }
+      else if(response.statusCode == 400){
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        throw Exception(responseData['error']);
+      }
       else{
         throw Exception('Something went wrong');
       }
     }
     catch(e){
-      throw Exception('invalid credentials');
+      throw e.toString();
     }
   }
 }
